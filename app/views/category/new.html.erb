@@ -1,0 +1,12 @@
+<div class="newCategory">
+  <div class="container">
+    <%= form_with model: @category, url: { action: :create }, class: "new_category", local: true do |f| %>
+      <% if @category.errors.any? %>
+        <p class="text-danger">タイトルは1～255文字以内で入力してください</p>
+      <% end %>
+      <%= f.label :category %>
+      <%= f.text_field :name, autofocus: true, class: "form-control categoryName", placeholder: "カテゴリ名" %>
+      <div class="text-center"><%= f.submit "作成", class: "submitBtn" %></div>
+    <% end %>
+  </div>
+</div>

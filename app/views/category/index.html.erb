@@ -1,2 +1,11 @@
-<h1>Category#index</h1>
-<p>Find me in app/views/category/index.html.erb</p>
+
+
+<% @categories.each do |category| %>
+  <div class="category-box bg-light">
+    <div class="category-name-box bg-dark">
+      <p class="category-name">
+        <%= category.name %>
+      </p>
+    </div>
+  </div>
+<% end %>
