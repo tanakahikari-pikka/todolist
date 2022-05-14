@@ -1,2 +1,12 @@
-<h1>Category#edit</h1>
-<p>Find me in app/views/category/edit.html.erb</p>
+<div class="categoryeditPage">
+    <div class="container">
+        <%= form_with model: @category, url: {action: :update},html:{class:'categoryForm'}, local: true do |f| %>
+            <% if @category.errors.any? %>
+                 <p class="text-danger">タイトルは1～255文字以内で入力してください</p>
+            <% end %>
+            <%= f.label :name %>
+            <%= f.text_field :name,class:"form-control categoryName",placeholder:"カテゴリ名" %>
+            <div class="text-center"><%= f.submit "編集する",class:"submitBtn" %></div>
+        <% end %>
+    </div>
+</div>
