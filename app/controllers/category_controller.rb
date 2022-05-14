@@ -31,6 +31,13 @@ class CategoryController < ApplicationController
   end
 
   def destroy
+    @category = Category.find(params[:id])
+    if @category.destroy
+      redirect_to category_index_path
+    else
+      @categories = Category.all
+      render :index
+    end
   end
 
   private
