@@ -6,6 +6,9 @@
       <% end %>
       <%= f.label :ToDo %>
       <%= f.text_field :name, autofocus: true, class: "form-control ListName", placeholder: "To Do を入力" %>
+      
+      <%= f.label :emo %>
+      <%= f.text_field :caption, autofocus: true, class: "form-control ListCaption", placeholder: "メモを入力" %>
       <div class="text-center"><%= f.submit "作成", class: "submitBtn" %></div>
     <% end %>
   </div>
