@@ -1,14 +1,36 @@
 
-
-<% @categories.each do |category| %>
-  <div class="category-box bg-light d-flex">
-    <div class="category-name-box bg-dark">
-      <p class="category-name">
-        <%= category.name %>
-        <%= link_to "Edit Category" , edit_category_path(category)%>
-        <%= link_to "Destroy Category", category_path(category),method: :delete %>
-      </p>
+<div class="categoryList row flex-nowrap">
+  <% @categories.each do |category| %>
+    <div class="col-5">
+      <div class="category-box bg-light">
+        <div class="category-name-box bg-dark col-10">
+          <p class="category-name">
+            <%= category.name %>
+          </p>
+        </div>
+          <!--d-flexで横並び、mtでmargin-top -->
+        <div class="category-links d-flex  mt-2   justify-content-around">
+          <div class="categoryEdit bg-dark col-4 rounded">
+            <%= link_to "Edit Category" , edit_category_path(category),class:"text-white"  %>
+          </div>
+          <div class="categoryDestroy bg-dark col-4 rounded">
+            <%= link_to "Destroy Category", category_path(category),method: :delete,class:"text-white" %>
+          </div>
+        </div>
+        <div class="todolists bg-dark rounded col-10 mx-auto mt-2">
+          <ul class="text-white">
+            <li>aaa</li>
+            <li>aaa</li>
+            <li>aaa</li>
+            <li>aaa</li>
+            <li>aaa</li>
+            <li>aaa</li>
+            <li>aaa</li>
+            <li>aaa</li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %>
 
-<% end %>
+</div>
