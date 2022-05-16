@@ -1,5 +1,6 @@
 class ListController < ApplicationController
-  def create
+  def new
+    @list = List.new
   end
 
   def edit
