@@ -6,6 +6,7 @@ class CategoryController < ApplicationController
 
   def index
     @categories = Category.all
+    @list = List.new
   end
 
   def create

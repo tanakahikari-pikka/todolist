@@ -1,15 +1,15 @@
 class ListController < ApplicationController
   def new
     @list = List.new
+    @category = Category.find_by(id: params[:category_id])
   end
 
   def create
-    @list = List.new(list_params)
-    if @category.save
-      redirect_to category_index_path
-    else
-      render :new
-    end
+    category = Category.find(params[:category_id])
+    list = List.new(list_params)
+    list.category_id = category.id
+    list.save
+    redirect_to category_index_path
   end
 
   def edit
@@ -19,10 +19,12 @@ class ListController < ApplicationController
   end
 
   def destroy
+    List.find(params[:id]).destroy
+    redirect_to category_index_path
   end
     private
 
     def list_params
-      params.require(:list).permit(:name,:caption)
+      params.require(:list).permit(:name,:caption,:category_id)
     end
 end

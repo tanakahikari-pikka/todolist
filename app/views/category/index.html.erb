@@ -8,25 +8,32 @@
             <%= category.name %>
           </p>
         </div>
-          <!--d-flexで横並び、mtでmargin-top -->
-        <div class="category-links d-flex  mt-2   justify-content-around">
-          <div class="categoryEdit bg-dark col-4 rounded">
-            <%= link_to "Edit Category" , edit_category_path(category),class:"text-white"  %>
+            <!--d-flexで横並び、mtでmargin-top -->
+          <div class="category-links d-flex  mt-2   justify-content-around">
+              <div class="categoryEdit bg-dark col-4 rounded">
+                <%= link_to "Edit Category" , edit_category_path(category),class:"text-white"  %>
+              </div>
+              <div class="categoryDestroy bg-dark col-4 rounded">
+                <%= link_to "Destroy Category", category_path(category),method: :delete,class:"text-white" %>
+              </div>
           </div>
-          <div class="categoryDestroy bg-dark col-4 rounded">
-            <%= link_to "Destroy Category", category_path(category),method: :delete,class:"text-white" %>
-          </div>
-        </div>
-        <div class="todolists bg-dark rounded col-10 mx-auto mt-2">
+          <%= form_with model: [category,@list] , url: category_list_index_path(category,@list) ,local: true,class:"col-10 mx-auto" do |f| %>
+            <%= f.text_area :name, rows: '5', placeholder: "TODOをここに",class:"col-12"  %>
+            <br>
+            <%= f.submit "送信する" %>
+          <% end %>
+          <div class="todolists bg-dark rounded col-10 mx-auto mt-2">
           <ul class="text-white">
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
+            <table>
+              <tbody>
+                <% category.lists.each do |list| %>
+                  <tr>
+                  <td><%= list.name %></td>
+                  <td><%= link_to "delete",category_list_path(category,list),method: :delete %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           </ul>
         </div>
       </div>

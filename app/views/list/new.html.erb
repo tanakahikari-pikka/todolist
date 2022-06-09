@@ -1,13 +1,18 @@
+    <% if @list.errors.any? %>
+        <%= @list.errors.count %>errors prohibited this obj from being saved:
+        <% @list.errors.full_messages.each do |message| %>
+        <%= message %>
+        <% end %>
+    <% end %>
 <div class="newList">
   <div class="container">
-    <%= form_with model: @list, url: { action: :create }, class: "new_category", local: true do |f| %>
-      <% if @list.errors.any? %>
-        <p class="text-danger">タイトルは1～255文字以内で入力してください</p>
-      <% end %>
+    <%= form_with model: [@categoey,@list], url: { action: :create }, class: "new_list", local: true do |f| %>
+    <%= f.hidden_field :category_id, value: @list.category %>
+
       <%= f.label :ToDo %>
-      <%= f.text_field :name, autofocus: true, class: "form-control ListName", placeholder: "To Do を入力" %>
-      
-      <%= f.label :emo %>
+      <%= f.text_field :ToDo, autofocus: true, class: "form-control ListName", placeholder: "To Do を入力" %>
+
+      <%= f.label :memo %>
       <%= f.text_field :caption, autofocus: true, class: "form-control ListCaption", placeholder: "メモを入力" %>
       <div class="text-center"><%= f.submit "作成", class: "submitBtn" %></div>
     <% end %>

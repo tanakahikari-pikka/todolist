@@ -36,7 +36,6 @@ padding-left: 15px;
 
 /* category-index */
 .category-box{
-    height:100px;
     border-radius: 10px;
     padding-top:10px;
 }
@@ -49,4 +48,10 @@ padding-left: 15px;
 .category-name{
     margin: 0;
     color: #fff;
+}
+
+/* new_list */
+
+#list_name{
+    height: 50px;
 }
