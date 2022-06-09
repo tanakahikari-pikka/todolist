@@ -1,6 +1,6 @@
 
 <div class="categoryList row flex-nowrap">
-  <% @categories.each do |category| %>
+<% @categories.each do |category| %>
     <div class="col-5">
       <div class="category-box bg-light">
         <div class="category-name-box bg-dark col-10">
@@ -30,6 +30,18 @@
                   <tr>
                   <td><%= list.name %></td>
                   <td><%= link_to "delete",category_list_path(category,list),method: :delete %></td>
+                  <td>
+                    <div class="categoryeditPage">
+                          <%#= form_with model: category_list_path(category,list), url: {controller: 'list', action: 'update' } ,html:{class:'categoryForm'}, local: true do |f| %>
+                          <%= form_with model: [category,list] do |f| %>
+                            <%#= f.fields_for :lists ,list,method: :patch do |list| %>
+                              <%= f.label :name %>
+                              <%= f.text_field :name,class:"form-control categoryName",placeholder:"TODOを更新" %>
+                              <div class="text-center"><%= f.submit "編集する",class:"submitBtn" %></div>
+                            <%# end %>
+                          <% end %>
+                      </div>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
@@ -38,6 +50,6 @@
         </div>
       </div>
     </div>
-  <% end %>
+<% end %>
 
 </div>

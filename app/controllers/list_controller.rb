@@ -18,6 +18,12 @@ class ListController < ApplicationController
   def show
   end
 
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to category_index_path
+  end
+
   def destroy
     List.find(params[:id]).destroy
     redirect_to category_index_path
