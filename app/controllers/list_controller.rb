@@ -24,13 +24,6 @@ class ListController < ApplicationController
     redirect_to category_index_path
   end
 
-  def toggle
-    head :no_content
-    @list = List.find(params[:id])
-    @list.done = !@list.done
-    @list.save
-  end
-
 
   def destroy
     List.find(params[:id]).destroy
