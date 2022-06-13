@@ -24,6 +24,14 @@ class ListController < ApplicationController
     redirect_to category_index_path
   end
 
+  def toggle
+    head :no_content
+    @list = List.find(params[:id])
+    @list.done = !@list.done
+    @list.save
+  end
+
+
   def destroy
     List.find(params[:id]).destroy
     redirect_to category_index_path
@@ -31,6 +39,6 @@ class ListController < ApplicationController
     private
 
     def list_params
-      params.require(:list).permit(:name,:caption,:category_id)
+      params.require(:list).permit(:name,:caption,:category_id,:done)
     end
 end

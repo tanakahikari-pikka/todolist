@@ -92,3 +92,9 @@ padding-left: 15px;
 .hide{
     display: none;
 }
+
+/* checkbox */
+
+.trash{
+    text-decoration: line-through;
+}

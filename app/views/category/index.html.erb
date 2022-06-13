@@ -60,18 +60,20 @@
               <tbody>
                 <% category.lists.each do |list| %>
                   <tr>
-                    <td class="col-10"><%= list.name%></td>
-                    <td class="d-flex">
+                    <td class="custom-control custom-checkbox col-10">
+                    <%= form_with model: [category,list] do |f| %>
+                          <%= f.check_box :done,:as => :boolean%>
+                          <%= f.label list.name ,class:"col-8" %>
+                      <%= f.submit "更新" %>
+                    <% end %>
+                    </td>
+                    <td class="d-flex ms-2">
                       <a class="text-white" data-bs-toggle="collapse" href="#collapseEditList_<%= list.id %>" role="button" aria-expanded="false" aria-controls="collapseEditList">
                         <i class="fas fa-file-pen"></i>
                       </a>
                       <%= link_to category_list_path(category,list),method: :delete,class:"text-white" do %>
                         <i class="fas fa-trash-can pe-1"></i>
                       <% end %>
-
-                    </td>
-                    <td>
-
                     </td>
                   </tr>
                   <tr>
@@ -86,6 +88,7 @@
               </tbody>
             </table>
           </ul>
+
         </div>
       </div>
     </div>
