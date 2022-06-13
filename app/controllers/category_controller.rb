@@ -7,6 +7,7 @@ class CategoryController < ApplicationController
   def index
     @categories = Category.all
     @list = List.new
+    @category = Category.new
   end
 
   def create
@@ -14,7 +15,9 @@ class CategoryController < ApplicationController
     if @category.save
       redirect_to category_index_path
     else
-      render :new
+      @list = List.new
+      @categories = Category.all
+      render :index
     end
   end
 
@@ -27,7 +30,9 @@ class CategoryController < ApplicationController
     if @category.update(category_params)
       redirect_to category_index_path
     else
-      render :edit
+      @list = List.new
+      @categories = Category.all
+      render :index
     end
   end
 
