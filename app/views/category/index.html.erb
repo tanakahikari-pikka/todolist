@@ -25,12 +25,12 @@
           <div class="category-links d-flex  mt-2   justify-content-around">
               <div class="categoryEdit mcolor col-4 rounded text-center pt-1 pb-1">
                 <a class=" text-decoration-none fcolor" data-bs-toggle="collapse" href="#collapseEditCategory_<%= category.id%>" role="button" aria-expanded="false" aria-controls="collapseEditCategory_<%= category.id%>">
-                  <i class="fas fa-file-pen"></i>  Edit
+                  <i class="fas fa-file-pen"></i>  更新
                 </a>
               </div>
               <div class="categoryDestroy mcolor col-4 rounded text-center pt-1 pb-1">
                 <%= link_to  category_path(category),method: :delete,class:"text-white text-decoration-none" do %>
-                  <i class="fas fa-trash-can"></i> Destroy
+                  <i class="fas fa-trash-can"></i> 削除
                 <% end %>
               </div>
           </div>
