@@ -1,13 +1,11 @@
 class CategoryController < ApplicationController
 
-  def new
-    @category = Category.new
-  end
+
 
   def index
     @categories = Category.all
-    @list = List.new
     @category = Category.new
+    @list = @category.lists
   end
 
   def create
@@ -21,9 +19,6 @@ class CategoryController < ApplicationController
     end
   end
 
-  def edit
-    @category = Category.find(params[:id])
-  end
 
   def update
     @category = Category.find(params[:id])

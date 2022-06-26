@@ -48,7 +48,7 @@
           </div>
           <div class="text-center">
 
-            <%= form_with model: [category,@list] , url: category_list_index_path(category,@list) ,local: true,class:"collapse",id:"collapseCreateToDo_#{category.id}" do |f| %>
+            <%= form_with model: [category,List.new] , url: category_list_index_path(category,@list) ,local: true,class:"collapse",id:"collapseCreateToDo_#{category.id}" do |f| %>
               <%= f.text_area :name, rows: '2', placeholder: "TODOを追加",class:"col-10"  %>
               <br>
               <%= f.submit "追加"  %>
@@ -58,33 +58,31 @@
           <ul class="text-white">
             <table>
               <tbody>
-                <% category.lists.each do |list| %>
                   <tr>
-                    <td class="custom-control custom-checkbox col-10">
-                    <%= form_with model: [category,list] do |f| %>
-                          <%= f.check_box :done,:as => :boolean %>
-                          <%= f.label list.name ,class:"col-8" %>
-                      <%= f.submit "更新" %>
-                    <% end %>
-                    </td>
-                    <td class="d-flex ms-2">
-                      <a class="text-white" data-bs-toggle="collapse" href="#collapseEditList_<%= list.id %>" role="button" aria-expanded="false" aria-controls="collapseEditList">
-                        <i class="fas fa-file-pen"></i>
-                      </a>
-                      <%= link_to category_list_path(category,list),method: :delete,class:"text-white" do %>
-                        <i class="fas fa-trash-can pe-1"></i>
+                    <td class="custom-control custom-checkbox col-10 ">
+                      <% category.lists.each do |list| %>
+                        <%= form_with model: [category,list] do |f| %>
+                            <%= f.check_box :done,:as => :boolean %>
+                            <%= f.label list.name ,class:"col-8" %>
+                            <div class="d-flex ms-2">
+                              <a class="text-white" data-bs-toggle="collapse" href="#collapseEditList_<%= list.id %>" role="button" aria-expanded="false" aria-controls="collapseEditList">
+                                <i class="fas fa-file-pen"></i>
+                              </a>
+                              <%= link_to category_list_path(category,list),method: :delete,class:"text-white" do %>
+                                <i class="fas fa-trash-can pe-1"></i>
+                              <% end %>
+                              <div class="collapse" , id="collapseEditList_<%=list.id%>">
+                                <%= form_with model: [category,list],class:"col-12 mb-3" do |f| %>
+                                  <%= f.text_field :name,class:"form-control categoryName col-12 mt-2 mb-2",placeholder:"TODOを更新" %>
+                                  <div class="text-center"><%= f.submit "編集する",class:"submitBtn" %></div>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
                       <% end %>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <%= form_with model: [category,list],class:"collapse col-12 mb-3", id:"collapseEditList_#{list.id}" do |f| %>
-                        <%= f.text_field :name,class:"form-control categoryName col-12 mt-2 mb-2",placeholder:"TODOを更新" %>
-                        <div class="text-center"><%= f.submit "編集する",class:"submitBtn" %></div>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
+
               </tbody>
             </table>
           </ul>
